@@ -9,13 +9,14 @@ class ToDoRepository {
     final response = await dio.get(url);
     final list = response.data as List;
     //o response.data passa o json, mas passa em array, por isso é bom passar ele para lista
-
-    List<ToDoModel> toDos = [];
+    return list.map((json) => ToDoModel.fromJson(json)).toList();
+    //a linha do return faz exatamente o mesmo do List<ToDoModel> abaixo
+    /* List<ToDoModel> toDos = [];
     for (var json in list) {
       final toDo = ToDoModel.fromJson(json);
       toDos.add(toDo);
     }
 
-    return toDos;
+    return toDos;*/
   }
 }
